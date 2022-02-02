@@ -1,0 +1,21 @@
+{
+    "name": "me-framework/me-app",
+    "description": "Me Framework",
+    "keywords": ["me", "framework", "project template"],
+    "homepage": "https://github.com/me-framework/me-app",
+    "type": "project",
+    "license": "Apache-2.0",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Hossein Najafi",
+            "email": "hnajafi1994@gmail.com",
+            "homepage": "https://www.meframework.ir/",
+            "role": "Founder and project lead"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "me-framework/me": "main-dev"
+    }
+}
