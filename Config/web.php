@@ -1,4 +1,5 @@
 <?php
+$url      = include 'url.php';
 $database = include 'database.php';
 return [
     'charset'         => 'UTF-8',
@@ -8,12 +9,7 @@ return [
     'defaultRoute'    => 'site/default/index',
     'basePath'        => dirname(__DIR__),
     'components'      => [
-        'database'     => $database,
-        'routeManager' => [
-            'rules' => [
-                '<module>/<controller>/<id:\d+>' => '<module>/<controller>/view',
-                '<module>/<controller>/<action>' => '<module>/<controller>/<action>',
-            ]
-        ],
+        'url'      => $url,
+        'database' => $database,
     ],
 ];

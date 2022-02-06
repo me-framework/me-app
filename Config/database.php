@@ -5,6 +5,12 @@ return [
      * 
      * 
      * -------------------------------- */
+    'class'       => 'me\database\DatabaseManager',
+    /* --------------------------------
+     * 
+     * 
+     * 
+     * -------------------------------- */
     'default'     => 'main',
     /* --------------------------------
      * 
@@ -20,6 +26,7 @@ return [
         'main' => [
             'driver'   => 'mysql',
             'host'     => 'localhost',
+            'port'     => '3306',
             'database' => 'me',
             'username' => 'root',
             'password' => '',
@@ -32,6 +39,7 @@ return [
         //'secound' => [
         //    'driver'   => 'mysql',
         //    'host'     => 'localhost',
+        //    'port'     => '3306',
         //    'database' => 'me',
         //    'username' => 'root',
         //    'password' => '',
