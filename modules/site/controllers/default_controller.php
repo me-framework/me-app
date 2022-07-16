@@ -1,10 +1,8 @@
 <?php
 namespace app\modules\site\controllers;
-use me\components\Controller;
-class default_controller extends Controller {
+use me\components\controller;
+class default_controller extends controller {
     public function index() {
-        return [
-            'Change this file: ' . __FILE__
-        ];
+        return [];
     }
 }

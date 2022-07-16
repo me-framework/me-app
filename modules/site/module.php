@@ -1,6 +1,6 @@
 <?php
 namespace app\modules\site;
-use me\components\Module as BaseModule;
-class module extends BaseModule {
-    public $controllerNamespace = 'app\modules\site\controllers';
+use me\components\module as base_module;
+class module extends base_module {
+    public $controller_namespace = 'app\modules\site\controllers';
 }
