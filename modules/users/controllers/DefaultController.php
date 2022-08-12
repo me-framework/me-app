@@ -1,7 +1,9 @@
 <?php
 namespace app\modules\users\controllers;
 use Me;
-use Exception;
+use me\exceptions\Exception;
+use me\exceptions\HttpNotFound;
+use me\exceptions\ValidationError;
 use me\components\Controller;
 use app\modules\users\models\users;
 class DefaultController extends Controller {
@@ -9,14 +11,14 @@ class DefaultController extends Controller {
         return [
             'index'  => [
                 'methods' => ['GET'],
-                'roles' => ['asd']
+                'roles'   => ['asd']
             ],
             'create' => [
                 //'methods' => ['POST'],
             ],
             'read'   => [
                 'methods' => ['GET'],
-                'roles' => ['asd']
+                'roles'   => ['asd']
             ],
             'update' => [
                 'methods' => ['POST'],
@@ -35,38 +37,36 @@ class DefaultController extends Controller {
             throw new Exception('not load');
         }
         if (!$model->save()) {
-            $errors = $model->getErrors();
-            throw new Exception(json_encode($errors), 422);
+            throw new ValidationError($model->getErrors());
         }
         return $this->read($model->id);
     }
     public function read($id) {
         $model = users::find()->where(['id' => $id])->with(['mobiles2', 'mobiles', 'permissions'])->one();
         if (!$model) {
-            throw new Exception('model not found', 404);
+            throw new HttpNotFound('model not found');
         }
         return $model;
     }
     public function update($id) {
         $model = users::findOne($id);
         if (!$model) {
-            throw new Exception('model not found', 404);
+            throw new HttpNotFound('model not found');
         }
         if (!$model->load(Me::$app->getRequest()->get())) {
             throw new Exception('not load');
         }
         if (!$model->save()) {
-            $errors = $model->getErrors();
-            throw new Exception(json_encode($errors), 422);
+            throw new ValidationError($model->getErrors());
         }
         return $this->read($model->id);
     }
     public function delete($id) {
         $model = users::findOne($id);
         if (!$model) {
-            throw new Exception('model not found', 404);
+            throw new HttpNotFound('model not found');
         }
-        $deleted = $model->delete();
-        return $deleted ? [] : [];
+        $model->delete();
+        return [];
     }
 }
