@@ -2,9 +2,9 @@
 namespace app\modules\users\controllers;
 use Me;
 use Exception;
-use me\components\controller;
+use me\components\Controller;
 use app\modules\users\models\users;
-class default_controller extends controller {
+class DefaultController extends Controller {
     protected function access() {
         return [
             'index'  => [
@@ -12,7 +12,7 @@ class default_controller extends controller {
                 'roles' => ['asd']
             ],
             'create' => [
-                'methods' => ['POST'],
+                //'methods' => ['POST'],
             ],
             'read'   => [
                 'methods' => ['GET'],
@@ -27,11 +27,11 @@ class default_controller extends controller {
         ];
     }
     public function index() {
-        return users::find()->with(['mobiles', 'permissions'])->orderBy(['id' => SORT_DESC])->all();
+        return users::find()->with(['mobiles2', 'mobiles', 'permissions'])->orderBy(['id' => SORT_DESC])->all();
     }
     public function create() {
         $model = new users();
-        if (!$model->load(Me::$app->get('request')->get())) {
+        if (!$model->load(Me::$app->getRequest()->get())) {
             throw new Exception('not load');
         }
         if (!$model->save()) {
@@ -41,18 +41,18 @@ class default_controller extends controller {
         return $this->read($model->id);
     }
     public function read($id) {
-        $model = users::find()->where(['id' => $id])->with(['mobiles', 'permissions'])->one();
+        $model = users::find()->where(['id' => $id])->with(['mobiles2', 'mobiles', 'permissions'])->one();
         if (!$model) {
             throw new Exception('model not found', 404);
         }
-        return $model->toArray();
+        return $model;
     }
     public function update($id) {
         $model = users::findOne($id);
         if (!$model) {
             throw new Exception('model not found', 404);
         }
-        if (!$model->load(Me::$app->get('request')->get())) {
+        if (!$model->load(Me::$app->getRequest()->get())) {
             throw new Exception('not load');
         }
         if (!$model->save()) {

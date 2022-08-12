@@ -15,7 +15,7 @@ class users extends Record {
             'fullname'    => 'required|string:3,255',
             'username'    => 'required|string:3,255',
             'password'    => 'required|string:3,255',
-            //'mobiles'     => 'many:app\modules\site\models\users_mobiles,id,user_id,id',
+            'mobiles2'    => 'many:app\modules\users\models\users_mobiles,id,user_id,id',
             'mobiles'     => 'sync:app\modules\users\models\users_mobiles,id,user_id,mobile',
             'permissions' => 'sync:app\modules\users\models\users_permissions,id,user_id,permission_id',
         ];

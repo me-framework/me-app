@@ -1,7 +1,7 @@
 <?php
 namespace app\modules\site\controllers;
-use me\components\controller;
-class default_controller extends controller {
+use me\components\Controller;
+class DefaultController extends Controller {
     public function index() {
         return [];
     }
